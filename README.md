@@ -3,6 +3,7 @@
 
 1. [Introduction](#introduction)
 2. [Project structure](#project-structure)
+3. [Testing and evaluation](#testing-and-evaluation)
 
 ## Introduction
 This is a repository of coursework assignments for the [Stanford Compilers](https://online.stanford.edu/courses/soe-ycscs1-compilers) MOOC course.
@@ -80,4 +81,7 @@ COOL is precisely defined in specification documents, the most relevant ones are
  * [Treewalk Code Generator](./assignments/PA5/cgen.cc) - writing a pass for code generation using a naive treewalk algorithm, generating code for the 'stack machine')
  	* The input to the code generator is the attributed abstract syntax tree and the output is a file consisting of MIPS instructions
  	* [Here](./handouts/PA5.pdf) is the assignment specification 
+	
+## Testing and Evaluation
+
  
