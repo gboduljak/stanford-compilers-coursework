@@ -1,4 +1,4 @@
-# Stanford Compilers Coursework
+# Stanford Compilers Coursework - COOL Compiler
 ### Table of Contents
 
 1. [Introduction](#introduction)
