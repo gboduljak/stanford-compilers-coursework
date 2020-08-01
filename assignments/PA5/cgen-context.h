@@ -15,7 +15,7 @@ typedef struct cgen_context {
 	std::vector<Symbol>                     scope_symbols;
 	std::map<Symbol, int>                   class_attr_offset;
 	std::map<Symbol, int>                   classtag_of;
-    std::map<Symbol, int>                   method_attr_offset;
+	std::map<Symbol, int>                   method_attr_offset;
 	std::map<Symbol, std::map<Symbol, int>> dispatch_offsets_of_class_methods;
 	Class_                                  self_class_definition;
 

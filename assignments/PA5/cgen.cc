@@ -1,27 +1,3 @@
-
-//**************************************************************
-//
-// Code generator SKELETON
-//
-// Read the comments carefully. Make sure to
-//    initialize the base class tags in
-//       `CgenClassTable::CgenClassTable'
-//
-//    Add the label for the dispatch tables to
-//       `IntEntry::code_def'
-//       `StringEntry::code_def'
-//       `BoolConst::code_def'
-//
-//    Add code to emit everyting else that is needed
-//       in `CgenClassTable::code'
-//
-//
-// The files as provided will produce code to begin the code
-// segments, declare globals, and emit constants.  You must
-// fill in the rest.
-//
-//**************************************************************
-
 #include "cgen.h"
 #include "cgen_gc.h"
 #include <vector>
@@ -33,12 +9,6 @@
 extern void emit_string_constant(ostream& str, char *s);
 extern int cgen_debug;
 
-//
-// Three symbols from the semantic analyzer (semant.cc) are used.
-// If e : No_type, then no code is generated for e.
-// Special code is generated for new SELF_TYPE.
-// The name "self" also generates code different from other references.
-//
 //////////////////////////////////////////////////////////////////////
 //
 // Symbols
@@ -75,6 +45,7 @@ Symbol
        substr,
        type_name,
        val;
+
 //
 // Initializing the predefined symbols.
 //
@@ -93,8 +64,6 @@ static void initialize_constants(void)
   length      = idtable.add_string("length");
   Main        = idtable.add_string("Main");
   main_meth   = idtable.add_string("main");
-//   _no_class is a symbol that can't be the name of any 
-//   user-defined class.
   No_class    = idtable.add_string("_no_class");
   No_type     = idtable.add_string("_no_type");
   Object      = idtable.add_string("Object");
@@ -115,24 +84,8 @@ static char *gc_init_names[] =
 static char *gc_collect_names[] =
   { "_NoGC_Collect", "_GenGC_Collect", "_ScnGC_Collect" };
 
-
-//  BoolConst is a class that implements code generation for operations
-//  on the two booleans, which are given global names here.
 BoolConst falsebool(FALSE);
 BoolConst truebool(TRUE);
-
-//*********************************************************
-//
-// Define method for code generation
-//
-// This is the method called by the compiler driver
-// `cgtest.cc'. cgen takes an `ostream' to which the assembly will be
-// emmitted, and it passes this and the class list of the
-// code generator tree to the constructor for `CgenClassTable'.
-// That constructor performs all of the work of the code
-// generator.
-//
-//*********************************************************
 
 void program_class::cgen(ostream &os) 
 {
@@ -322,9 +275,6 @@ static void emit_branch(int l, ostream& s)
   s << endl;
 }
 
-//
-// Push a register on the stack. The stack grows towards smaller addresses.
-//
 static void emit_push(char *reg, ostream& str)
 {
   emit_store(reg,0,SP,str);
@@ -341,6 +291,7 @@ static void emit_pop_without_load(ostream& str)
 {
   emit_addiu(SP,SP,4,str);
 }
+
 //
 // Fetch the integer value in an Int object.
 // Emits code to fetch the integer value of the Integer object pointed
@@ -408,7 +359,7 @@ static void emit_not(char* dest, char* src, ostream &s) {
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// coding strings, ints, and booleans
+// Coding strings, ints, and booleans
 //
 // Cool has three kinds of constants: strings, ints, and booleans.
 // This section defines code generation for each type.
@@ -437,7 +388,6 @@ void StringEntry::code_ref(ostream& s)
 
 //
 // Emit code for a constant String.
-// You should fill in the code naming the dispatch table.
 //
 
 void StringEntry::code_def(ostream& s, int stringclasstag)
@@ -481,7 +431,6 @@ void IntEntry::code_ref(ostream &s)
 
 //
 // Emit code for a constant Integer.
-// You should fill in the code naming the dispatch table.
 //
 
 void IntEntry::code_def(ostream &s, int intclasstag)
@@ -495,8 +444,6 @@ void IntEntry::code_def(ostream &s, int intclasstag)
       << WORD; 
 
   s << INTNAME << DISPTAB_SUFFIX;
-
- /***** Add dispatch information for class Int ******/
 
       s << endl;                                          // dispatch table
       s << WORD << str << endl;                           // integer value
@@ -527,7 +474,6 @@ void BoolConst::code_ref(ostream& s) const
   
 //
 // Emit code for a constant Bool.
-// You should fill in the code naming the dispatch table.
 //
 
 void BoolConst::code_def(ostream& s, int boolclasstag)
@@ -579,11 +525,6 @@ void CgenClassTable::code_global_data()
   str << GLOBAL << INTTAG << endl;
   str << GLOBAL << BOOLTAG << endl;
   str << GLOBAL << STRINGTAG << endl;
-
-  //
-  // We also need to know the tag of the Int, String, and Bool classes
-  // during code generation.
-  //
   str << INTTAG << LABEL
       << WORD << intclasstag << endl;
   str << BOOLTAG << LABEL 
@@ -690,9 +631,6 @@ CgenClassTable::CgenClassTable(Classes classes, ostream& s) : nds(NULL) , str(s)
 
 void CgenClassTable::install_basic_classes()
 {
-
-// The tree package uses these globals to annotate the classes built below.
-  //curr_lineno  = 0;
   Symbol filename = stringtable.add_string("<basic class>");
 
 //
@@ -918,6 +856,13 @@ CgenNode::CgenNode(Class_ nd, Basicness bstatus, CgenClassTableP ct) :
    stringtable.add_string(name->get_string());
 }
 
+
+///////////////////////////////////////////////////////////////////////
+//
+// Class Definition helpers
+//
+///////////////////////////////////////////////////////////////////////
+
 std::vector<Symbol> get_class_methods(Class_ class_definition) {
     std::vector<Symbol> class_methods;
 
@@ -997,6 +942,12 @@ std::map<Symbol, attr_class*> get_class_attribute_defs(Class_ class_definition) 
     }
     return class_attrs;
 }
+
+///////////////////////////////////////////////////////////////////////
+//
+// Inheritance tree traversal actions
+//
+///////////////////////////////////////////////////////////////////////
 
 void CgenClassTable::attach_inherited_definitions_to(Class_ class_definition, Class_ parent_definition) {
   class_definitions[class_definition->get_name()] = class_definition;
@@ -1080,6 +1031,12 @@ void CgenClassTable::traverse_inheritance_tree() {
   }
 }
 
+///////////////////////////////////////////////////////////////////////
+//
+// Prototype object construction
+//
+///////////////////////////////////////////////////////////////////////
+
 void CgenClassTable::construct_protObjs() {
     for (auto *class_node = this->nds; class_node; class_node = class_node->tl()) {
       auto class_definition = class_node->hd()->get_class_definition();
@@ -1120,6 +1077,12 @@ int CgenClassTable::get_classtag_for(Symbol type) {
     return next_classtag();
 }
 
+///////////////////////////////////////////////////////////////////////
+//
+// Code generation class definition construction
+//
+///////////////////////////////////////////////////////////////////////
+
 cgen_class_definition CgenClassTable::construct_cgen_class_definition(Class_ class_) {
   Symbol class_name = class_->get_name();
   cgen_class_definition cgen_definition;
@@ -1147,6 +1110,15 @@ cgen_class_definition CgenClassTable::construct_cgen_class_definition(Class_ cla
   cgen_definition.directly_owned_attrs = class_directly_owned_attributes[cgen_definition.name];
   return cgen_definition;
 }
+
+
+///////////////////////////////////////////////////////////////////////
+//
+// Code generation for name table, object table and parent table
+// Code generation for prototype objects, methods, attributes and initializers
+//
+///////////////////////////////////////////////////////////////////////
+
 
 void CgenClassTable::emit_nameTab() {
   str << CLASSNAMETAB << ":" << endl;
@@ -1325,6 +1297,14 @@ void CgenClassTable::emit_class_methods() {
 }
 
 
+
+///////////////////////////////////////////////////////////////////////
+//
+// Code generation for abstract syntax tree expressions
+//
+///////////////////////////////////////////////////////////////////////
+
+// Code generation labels logic
 int current_label_ix = 0;
 int next_label() {
   return current_label_ix++;
