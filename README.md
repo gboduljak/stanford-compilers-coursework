@@ -83,5 +83,9 @@ COOL is precisely defined in specification documents, the most relevant ones are
  	* [Here](./handouts/PA5.pdf) is the assignment specification 
 	
 ## Testing and Evaluation
+Most compiler phases are tested using the automated scripts which generate test cases and run each phase on the generated test cases. All compiler phases are written and treated separately (ex: semantic analysis depends on the reference parser and lexer instead of ones written in this repository). This is to ensure that each phase generates only its own mistakes, since the mistakes made in previous phases could easily propagate in some later phase. 
 
- 
+In the last phase (code generator), reference lexer, parser and semantic analyser are replaced by the ones written in this repository since they have shown 100% accuracy, so it was reasonable to treat them as correct, although it may be wrong. There were precisely 270 test cases across all phases.
+Complete testing report is available [here](https://github.com/gboduljak/stanford-compilers-coursework/blob/master/all-phases-test.out).
+
+To reproduce it, simply run **run-all-phases-test.sh** in the root of repository. This script should (re)compile all phases, test them separately and link them into a compiler which will be tested as a whole executable.
