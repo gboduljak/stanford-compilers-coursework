@@ -6,7 +6,7 @@
 
 ## Introduction
 This is a repository of coursework assignments for the [Stanford Compilers](https://online.stanford.edu/courses/soe-ycscs1-compilers) MOOC course.
-The result of completing all coursework assignments is a fully-working compiler for the [COOL Programming Language](http://theory.stanford.edu/~aiken/software/cool/cool.html).
+The result of completing all coursework assignments is a fully-working compiler for the [COOL Programming Language](http://theory.stanford.edu/~aiken/software/cool/cool.html). Compiler is written in C++ and depends on several assignment supplied libraries (like symbol table, identifiers table ...). [Flex](https://github.com/westes/flex) and [Bison](https://www.gnu.org/software/bison) are used to implement first compiler frontend phases and other compiler passes are handcoded in C++.
 
 The compiler compiles COOL into MIPS Assembly. MIPS is a reduced instruction set architecture about which you can learn more [here](https://en.wikipedia.org/wiki/MIPS_architecture).
 Resulting programs are run using [SPIM simulator](http://spimsimulator.sourceforge.net/).
