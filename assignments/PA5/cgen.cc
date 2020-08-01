@@ -1459,24 +1459,6 @@ void typcase_class::code(ostream &s, cgen_context ctx) {
   int ancestors_loop_start = next_label();
   int ancestors_cases_start = next_label();
 
-  expr->code(s, ctx);
-  // Ensure dispatch to existing object
-  emit_bne(ACC, ZERO, typcase_exp_save_to_check, s);
-  //  Dispatch to void
-  emit_partial_load_address(ACC, s);
-  stringtable.lookup_string(class_definition->get_filename()->get_string())->code_ref(s);
-  s << endl;
-  emit_load_imm(T1, get_line_number(), s);
-  emit_jal("_case_abort2", s);
-
- 
-  // Dispatch to valid object
-  emit_label_def(typcase_exp_save_to_check, s);
-  emit_load(T1, TAG_OFFSET, ACC, s); // $t1 holds expr dynamic type tag
-
-  // emit each case branch match
-  // maybe sort branches topologically from least precise to most precise
-  // consider them in order of decreasing precision
   std::map<Symbol, int> branches_match_labels;
   std::map<Symbol, int> branches_classtype_tags;
   std::map<Symbol, branch_class*> branches;
@@ -1500,7 +1482,21 @@ void typcase_class::code(ostream &s, cgen_context ctx) {
     }
   );
 
-  // emit beq for each class tag match in correct order
+  expr->code(s, ctx);
+  // Ensure dispatch to existing object
+  emit_bne(ACC, ZERO, typcase_exp_save_to_check, s);
+  //  Dispatch to void
+  emit_partial_load_address(ACC, s);
+  stringtable.lookup_string(class_definition->get_filename()->get_string())->code_ref(s);
+  s << endl;
+  emit_load_imm(T1, get_line_number(), s);
+  emit_jal("_case_abort2", s);
+
+  // Dispatch to valid object
+  emit_label_def(typcase_exp_save_to_check, s);
+  emit_load(T1, TAG_OFFSET, ACC, s); // $t1 holds expr dynamic type tag
+
+  // Consider every ancestor type of dynamic type tag and emit beq for each class tag match in correct order
   // T4 current ancestor of expr type
   // T5 class_parentTab address
   // T6 invalid parent
@@ -1511,26 +1507,23 @@ void typcase_class::code(ostream &s, cgen_context ctx) {
   emit_load_imm(T6, INVALIDPARENTTAG, s);
   emit_load_imm(T7, 4, s);
   emit_label_def(ancestors_loop_start, s);
-  // check if ancestor is -1 then jump to
   emit_bne(T4, T6, ancestors_cases_start, s);
   emit_jump_to_label(typcase_match_failure_label, s);
   emit_label_def(ancestors_cases_start, s);
-  // loop
   for (auto const &branch_type : branch_types) {
     int branch_matched_label = branches_match_labels[branch_type];
     int branch_classtag = branches_classtype_tags[branch_type];
-
     emit_load_imm(T2, branch_classtag, s); // $t2 -> branch_classtag
     emit_beq(T4, T2, branch_matched_label, s);
   }
-  // load ancestor
-  // $t4 = CLASSPARENTTAB[$t4]  
+
+  // Setup variable dynamic type ancestor
   emit_mul(T4, T4, T7, s);
   emit_addu(T4, T4, T5, s);
   emit_load(T4, 0, T4, s);
-  emit_jump_to_label(ancestors_loop_start, s);
+  // Generate code for ancestor type loop
 
-  
+  emit_jump_to_label(ancestors_loop_start, s);
   emit_jump_to_label(typcase_match_failure_label, s);
 
   for (auto const &branch_type : branch_types) {
@@ -1551,7 +1544,7 @@ void typcase_class::code(ostream &s, cgen_context ctx) {
     emit_jump_to_label(typcase_branch_match_succesfull_label, s);
   }
 
-  // emit case match failure label
+  // Generate code for match failure label
   // T3 holds class name, T1 classtag
 
   emit_label_def(typcase_match_failure_label, s);
@@ -1561,7 +1554,7 @@ void typcase_class::code(ostream &s, cgen_context ctx) {
   emit_addu(T3, T3,T2, s);
   emit_jal("_case_abort", s);
 
-  // typcase_branch_match_succesfull_label
+  // Generate code for match successfull label
   emit_label_def(typcase_branch_match_succesfull_label, s);
 }
 
