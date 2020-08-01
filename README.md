@@ -3,7 +3,8 @@
 
 1. [Introduction](#introduction)
 2. [Project structure](#project-structure)
-3. [Testing and evaluation](#testing-and-evaluation)
+3. [Testing and grading](#testing-and-grading)
+4. [Sample COOL Programs](#sample-cool-programs)
 
 ## Introduction
 This is a repository of coursework assignments for the [Stanford Compilers](https://online.stanford.edu/courses/soe-ycscs1-compilers) MOOC course.
@@ -82,10 +83,20 @@ COOL is precisely defined in specification documents, the most relevant ones are
  	* The input to the code generator is the attributed abstract syntax tree and the output is a file consisting of MIPS instructions
  	* [Here](./handouts/PA5.pdf) is the assignment specification 
 	
-## Testing and Evaluation
-Most compiler phases are tested using the automated scripts which generate test cases and run each phase on the generated test cases. All compiler phases are written and treated separately (ex: semantic analysis depends on the reference parser and lexer instead of ones written in this repository). This is to ensure that each phase generates only its own mistakes, since the mistakes made in previous phases could easily propagate in some later phase. 
+## Testing and Grading
+Most compiler phases are tested using the automated scripts which generate test cases and run each phase on the generated test cases. Almost all scripts were provided by the skeleton coursework project. All compiler phases are written and treated separately (ex: semantic analysis depends on the reference parser and lexer instead of ones written in this repository). This is to ensure that each phase generates only its own mistakes, since the mistakes made in previous phases could easily propagate in some later phase. 
 
 In the last phase (code generator), reference lexer, parser and semantic analyser are replaced by the ones written in this repository since they have shown 100% accuracy, so it was reasonable to treat them as correct, although it may be wrong. There were precisely 270 test cases across all phases.
 Complete testing report is available [here](https://github.com/gboduljak/stanford-compilers-coursework/blob/master/all-phases-test.out).
 
 To reproduce it, simply run **run-all-phases-test.sh** in the root of repository. This script should (re)compile all phases, test them separately and link them into a compiler which will be tested as a whole executable.
+
+## Sample COOL Programs
+In the [examples](./examples) folder, there are various example COOL programs. All of them come in pairs ({name}.cl, {name}.s) where {name}.cl is a COOL program code, while {name}.s is the corresponding MIPS assembly program compiled using the written compiler (**coolc** in the root of the repository). 
+Some of them are very simple and illustrate only key features of the COOL language, but there a few ones which are quite advanced (take a look at [lam.cl](./examples/lam.cl) which builds lambda calculus representation of a simple program and compiles it into Cool). 
+
+One of the 'graphical' ones is [cells.cl](./examples/cells.cl) which models one dimensional cellular automaton.
+![cells.cl](./readme-resources/cellular-automaton.png)
+
+All of these programs were provided in the skeleton course project. You can find more about them [here](./examples/README). 
+
