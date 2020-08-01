@@ -103,7 +103,7 @@ All of these programs were provided in the skeleton course project. You can find
 
 ## Setup & Reproduce
 This setup has been tested on Ubuntu 18, but I assume it should work on many distros with somewhat different package installations.
-The project depends on the reference COOL project and various tools.
+The project depends on the reference COOL project and various tools. This setup is a variant of one discussed in the MOOC and the instructions written here originate from there.
 
 1. Install packages: sudo apt-get install flex bison build-essential csh libxaw7-dev
 2. Make the /usr/class directory: sudo mkdir /usr/class
@@ -123,3 +123,4 @@ The project depends on the reference COOL project and various tools.
 	* You should be able to run compiler using ./coolc in the root of this repository
 10. (Optionally) To ensure the compiler has been built successfully, execute **run-all-phases-test.sh** in the root of this repository
 	* This script should test all compiler stages and output results similar to [all-tests-output](./all-phases-test.out)
+
