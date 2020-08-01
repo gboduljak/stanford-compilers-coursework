@@ -5,7 +5,7 @@
 2. [Project structure](#project-structure)
 3. [Testing and grading](#testing-and-grading)
 4. [Sample COOL Programs](#sample-cool-programs)
-5. [Setup & Reproduce](#setup-&-reproduce)
+5. [Setup & Reproduce](#setup--reproduce)
 
 ## Introduction
 This is a repository of coursework assignments for the [Stanford Compilers](https://online.stanford.edu/courses/soe-ycscs1-compilers) MOOC course.
@@ -102,4 +102,24 @@ One of the 'graphical' ones is [cells.cl](./examples/cells.cl) which models one 
 All of these programs were provided in the skeleton course project. You can find more about them [here](./examples/README). 
 
 ## Setup & Reproduce
+This setup has been tested on Ubuntu 18, but I assume it should work on many distros with somewhat different package installations.
+The project depends on the reference COOL project and various tools.
 
+1. Install packages: sudo apt-get install flex bison build-essential csh libxaw7-dev
+2. Make the /usr/class directory: sudo mkdir /usr/class
+3. Adjust directory permissions: sudo chown $USER /usr/class
+4. Go to /usr/class and download the tarball
+	* cd /usr/class
+	* wget https://courses.edx.org/asset-v1:StanfordOnline+SOE.YCSCS1+1T2020+type@asset+block@student-dist.tar.gz
+5. Untar
+	* tar -xf student-dist.tar.gz
+6. Add symlink to reference cool compiler stages 
+	* ln -s /usr/class/cs143/cool ~/cool
+7. Add the bin directory to the PATH environment variable
+	* PATH=/usr/class/cs143/cool/bin:$PATH
+8. Clone this repository
+9. Run **compile-compiler.sh** in the root of this repository
+	* This script should build all compiler stages separately and link them
+	* You should be able to run compiler using ./coolc in the root of this repository
+10. (Optionally) To ensure the compiler has been built successfully, execute **run-all-phases-test.sh** in the root of this repository
+	* This script should test all compiler stages and output results similar to [all-tests-output](./all-phases-test.out)
