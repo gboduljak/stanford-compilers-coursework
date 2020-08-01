@@ -6,6 +6,7 @@
 3. [Testing and grading](#testing-and-grading)
 4. [Sample COOL Programs](#sample-cool-programs)
 5. [Setup & Reproduce](#setup--reproduce)
+6. [Potential improvements](#potential-improvements)
 
 ## Introduction
 This is a repository of coursework assignments for the [Stanford Compilers](https://online.stanford.edu/courses/soe-ycscs1-compilers) MOOC course.
@@ -123,4 +124,5 @@ The project depends on the reference COOL project and various tools. This setup 
 	* You should be able to run compiler using ./coolc in the root of this repository
 10. (Optionally) To ensure the compiler has been built successfully, execute **run-all-phases-test.sh** in the root of this repository
 	* This script should test all compiler stages and output results similar to [all-tests-output](./all-phases-test.out)
-
+	
+## Potential improvements
