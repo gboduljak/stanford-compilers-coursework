@@ -1,4 +1,4 @@
-# Stanford Compilers Coursework - COOL Compiler
+# Stanford Compilers Coursework (COOL Compiler)
 ### Table of Contents
 
 1. [Introduction](#introduction)
@@ -126,3 +126,8 @@ The project depends on the reference COOL project and various tools. This setup 
 	* This script should test all compiler stages and output results similar to [all-tests-output](./all-phases-test.out)
 	
 ## Potential improvements
+* Refactor complete project
+	* Since this project was built in several assignments, due to the skeleton project build process it was hard to reuse some logic (like traversing the class inheritance graph) so the complete implementation of this compiler consists of only 5 files mentioned in [project structure section](#project-structure) which sometimes duplicate logic from previous steps.
+	* After some analysis, I have realised it might be a better idea to rewrite the compiler from scratch using more clear build process in a separate repository
+* Maybe compile to LLVM intermediate language to support more platforms out-of-the-box
+	* This has been done by many people after completing this course
