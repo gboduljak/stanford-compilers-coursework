@@ -8,8 +8,8 @@
 5. [Setup & Reproduce](#setup--reproduce)
 6. [Potential improvements](#potential-improvements)
 
-### TLDR
-If you are
+#### TLDR
+If you are just looking for assignment implementations, see the [project structure](#project-structure) section.
 ## Introduction
 This is a repository of coursework assignments for the [Stanford Compilers](https://online.stanford.edu/courses/soe-ycscs1-compilers) MOOC course.
 The result of completing all coursework assignments is a fully-working compiler for the [COOL Programming Language](http://theory.stanford.edu/~aiken/software/cool/cool.html). Compiler is written in C++ and depends on several assignment supplied libraries (like symbol table, identifiers table ...). [Flex](https://github.com/westes/flex) and [Bison](https://www.gnu.org/software/bison) are used to implement first compiler frontend phases and other compiler passes are handcoded in C++.
