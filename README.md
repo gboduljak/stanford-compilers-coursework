@@ -2,6 +2,7 @@
 ### Table of Contents
 
 1. [Introduction](#introduction)
+2. [Project structure](#project_structure)
 
 ## Introduction
 This is a repository of coursework assignments for the [Stanford Compilers](https://online.stanford.edu/courses/soe-ycscs1-compilers) MOOC course.
@@ -63,3 +64,5 @@ COOL is precisely defined in specification documents, the most relevant ones are
 };
 
  ```
+ 
+ ## Project Structure
