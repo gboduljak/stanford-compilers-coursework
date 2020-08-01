@@ -1,0 +1,7 @@
+li $v0, 1
+lw $a0, 12($a0)
+syscall
+
+li $v0, 1
+li $a0, 42
+syscall

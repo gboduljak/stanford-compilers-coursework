@@ -1,0 +1,2 @@
+./trickyatdispatch2.test:10: Expression type A is not compatible with declared static dispatch type B.
+Compilation halted due to static semantic errors.

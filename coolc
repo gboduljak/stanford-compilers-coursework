@@ -1,0 +1,2 @@
+#!/bin/csh -f
+./assignments/PA2/lexer $* | ./assignments/PA3/parser $* | ./assignments/PA4/semant $* | ./assignments/PA5/cgen $*
