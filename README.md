@@ -5,6 +5,7 @@
 2. [Project structure](#project-structure)
 3. [Testing and grading](#testing-and-grading)
 4. [Sample COOL Programs](#sample-cool-programs)
+5. [Setup & Reproduce](#setup-&-reproduce)
 
 ## Introduction
 This is a repository of coursework assignments for the [Stanford Compilers](https://online.stanford.edu/courses/soe-ycscs1-compilers) MOOC course.
@@ -99,4 +100,6 @@ One of the 'graphical' ones is [cells.cl](./examples/cells.cl) which models one 
 ![cells.cl](./readme-resources/cellular-automaton.png)
 
 All of these programs were provided in the skeleton course project. You can find more about them [here](./examples/README). 
+
+## Setup & Reproduce
 
