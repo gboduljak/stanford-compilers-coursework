@@ -2,7 +2,7 @@
 ### Table of Contents
 
 1. [Introduction](#introduction)
-2. [Project structure](#project_structure)
+2. [Project structure](#project-structure)
 
 ## Introduction
 This is a repository of coursework assignments for the [Stanford Compilers](https://online.stanford.edu/courses/soe-ycscs1-compilers) MOOC course.
@@ -66,3 +66,18 @@ COOL is precisely defined in specification documents, the most relevant ones are
  ```
  
  ## Project Structure
+ The compiler project consists of four programming assignments:
+ * [Lexer](./assignments/PA2/cool.flex) - writing Flex specification which generates lexer
+ 	* The input to the lexer is a string and the output is a stream of tokens
+ 	* [Here](./handouts/PA2.pdf) is the assignment specification 
+ * [Parser](./assignments/PA3/cool.y) - writing Bison specification which generates LALR(1) parser
+  	* The input to the parser is a stream of tokens and the output is an abstract syntax tree
+	* The abstract syntax tree is constructed using a simple syntax directed translation
+ 	* [Here](./handouts/PA3.pdf) is the assignment specification 
+ * [Semantic Analyser](./assignments/PA4/semant.cc) - writing a pass for semantical analysis, mainly type checking
+ 	* The input to the semantic analyser is a raw abstract syntax tree and the output is the attributed abstract syntax tree
+  	* [Here](./handouts/PA4.pdf) is the assignment specification 
+ * [Treewalk Code Generator](./assignments/PA5/cgen.cc) - writing a pass for code generation using a naive treewalk algorithm, generating code for the 'stack machine')
+ 	* The input to the code generator is the attributed abstract syntax tree and the output is a file consisting of MIPS instructions
+ 	* [Here](./handouts/PA5.pdf) is the assignment specification 
+ 
