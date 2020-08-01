@@ -1,0 +1,12 @@
+cd assignments
+cd PA2
+sh run-tests.sh
+cd ..
+cd PA3
+sh run-tests.sh
+cd ..
+cd PA4
+sh run-tests.sh
+cd ..
+cd PA5
+sh run-tests.sh

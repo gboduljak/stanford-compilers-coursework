@@ -1,0 +1,64 @@
+make: 'lexer' is up to date.
+Grading .....
+make: Entering directory '/home/parallels/Desktop/stanford-compilers-coursework/assignments/PA2'
+make: 'lexer' is up to date.
+make: Leaving directory '/home/parallels/Desktop/stanford-compilers-coursework/assignments/PA2'
+=====================================================================
+submission: ..
+
+=====================================================================
+You got a score of 63 out of 63.
+
+Submit code: 
+63:03afdbd66e7929b125f8597834fa83a4
+
+make: 'lexer' is up to date.
+Grading .....
+make: Entering directory '/home/parallels/Desktop/stanford-compilers-coursework/assignments/PA3'
+make: 'parser' is up to date.
+make: Leaving directory '/home/parallels/Desktop/stanford-compilers-coursework/assignments/PA3'
+=====================================================================
+submission: ..
+
+=====================================================================
+You got a score of 70 out of 70.
+
+Submit code: 
+70:7cbbc409ec990f19c78c75bd1e06f215
+
+make: 'lexer' is up to date.
+Grading .....
+make: Entering directory '/home/parallels/Desktop/stanford-compilers-coursework/assignments/PA4'
+make: Nothing to be done for 'source'.
+make: Leaving directory '/home/parallels/Desktop/stanford-compilers-coursework/assignments/PA4'
+make: Entering directory '/home/parallels/Desktop/stanford-compilers-coursework/assignments/PA4'
+make: 'semant' is up to date.
+make: Leaving directory '/home/parallels/Desktop/stanford-compilers-coursework/assignments/PA4'
+=====================================================================
+submission: ..
+
+=====================================================================
+You got a score of 74 out of 74.
+
+Submit code: 
+PA3-74:a88e7b09ee0cf795e75880f1c74677af
+
+make: 'lexer' is up to date.
+Grading .....
+make: Entering directory '/home/parallels/Desktop/stanford-compilers-coursework/assignments/PA5'
+make: Nothing to be done for 'source'.
+make: Leaving directory '/home/parallels/Desktop/stanford-compilers-coursework/assignments/PA5'
+make: Entering directory '/home/parallels/Desktop/stanford-compilers-coursework/assignments/PA5'
+make: 'cgen' is up to date.
+make: Leaving directory '/home/parallels/Desktop/stanford-compilers-coursework/assignments/PA5'
+=====================================================================
+submission: ..
+
+[GC Test Case: lam-gc.cl]
+[GC Test Case: simple-gc.cl]
+=====================================================================
+You got a score of 63 out of 63.
+
+Submit code: 
+PA4-63:009287d0591014af0f82863b117a77f7
+
