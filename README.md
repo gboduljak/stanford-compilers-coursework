@@ -105,9 +105,13 @@ One of the 'graphical' ones is [cells.cl](./examples/cells.cl) which models one 
 All of these programs were provided in the skeleton course project. You can find more about them [here](./examples/README). 
 
 ## Setup & Reproduce
+
+### Linux (Tested on Ubuntu 18)
 This setup has been tested on Ubuntu 18, but I assume it should work on many distros with somewhat different package installations.
 The project depends on the reference COOL project and various tools. This setup is a variant of one discussed in the MOOC and the instructions written here originate from there.
 
+#### (Optional) - Setup complete coursework environment
+**Use this setup variant if you want to run testing supplied in the coursework (dependes on specific spim installation and path)**
 1. Install packages: sudo apt-get install flex bison build-essential csh libxaw7-dev
 2. Make the /usr/class directory: sudo mkdir /usr/class
 3. Adjust directory permissions: sudo chown $USER /usr/class
@@ -120,6 +124,8 @@ The project depends on the reference COOL project and various tools. This setup 
 	* ln -s /usr/class/cs143/cool ~/cool
 7. Add the bin directory to the PATH environment variable
 	* PATH=/usr/class/cs143/cool/bin:$PATH
+
+#### Setup project
 8. Clone this repository
 9. Run **compile-compiler.sh** in the root of this repository
 	* This script should build all compiler stages separately and link them
@@ -127,6 +133,28 @@ The project depends on the reference COOL project and various tools. This setup 
 10. (Optionally) To ensure the compiler has been built successfully, execute **run-all-phases-test.sh** in the root of this repository
 	* This script should test all compiler stages and output results similar to [all-tests-output](./all-phases-test.out)
 	
+### macOS (Tested on Catalina)
+**This setup variant is equivalent to the Linux one without setting up coursework environment**
+#### Setup tools and dependencies
+1. Install g++, using brew you can run brew install g++
+	* Ensure that g++-9 is available
+2. Install flex, using brew you can run brew install flex
+	* Link this version of bison using brew link flex --force
+		* You might need to add flex to PATH, possibly using something similar to echo 'export PATH="/usr/local/opt/flex/bin:$PATH"' >> ~/.zshrc
+	* Ensure that running flex actually runs this flex (which flex should return /usr/local/opt/bison/bin/flex)
+3. Install bison, using brew you can run brew install bison
+	* Link this version of bison using brew link bison --force
+		* You might need to add bison to PATH, possibly using something similar to echo 'export PATH="/usr/local/opt/bison/bin:$PATH"' >> ~/.zshrc
+	* Ensure that running bison actually runs this bison (which bison should return /usr/local/opt/bison/bin/bison)
+4. Install spim, using brew you can run brew install spim
+	* cp trap.handler /usr/local/Cellar/spim/{spim-version}/share/exceptions.s (where {spim-version} should be replaced with installed spim version)
+
+#### Setup project
+1. Clone this repository
+2. Replace Makefiles in each assignment folders (./assignments/PA2, ./assignments/PA3, ./assignments/PA4, ./assignments/PA5) with Makefile.mac makefiles
+3. Run **compile-compiler.sh** in the root of this repository
+	* This script should build all compiler stages separately and link them
+	* You should be able to run compiler using ./coolc in the root of this repository
 ## Potential improvements
 * Refactor complete project
 	* Since this project was built in several assignments, due to the skeleton project build process it was hard to reuse some logic (like traversing the class inheritance graph) so the complete implementation of this compiler consists of only 5 files mentioned in [project structure section](#project-structure) which sometimes duplicate logic from previous steps.
