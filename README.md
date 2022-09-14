@@ -155,6 +155,15 @@ The project depends on the reference COOL project and various tools. This setup 
 3. Run **compile-compiler.sh** in the root of this repository
 	* This script should build all compiler stages separately and link them
 	* You should be able to run compiler using ./coolc in the root of this repository
+
+### Docker
+**This setup need [vscode](https://code.visualstudio.com/) and [remote-containers](https://code.visualstudio.com/docs/remote/containers-tutorial) plugin**
+#### Setup project
+1. Clone this repository, open repository root directory in `vscode`
+2. Open `Command Palette`, choose `Open Folder in Container...`
+	* First time it will build a container that contain all project tools and environment
+	* vscode will use that container as development environment and mount workspace folder at `/use/class/cs143/cool`, `PATH` enviroment variable is already set for you
+
 ## Potential improvements
 * Refactor complete project
 	* Since this project was built in several assignments, due to the skeleton project build process it was hard to reuse some logic (like traversing the class inheritance graph) so the complete implementation of this compiler consists of only 5 files mentioned in [project structure section](#project-structure) which sometimes duplicate logic from previous steps.
